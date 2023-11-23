@@ -2,7 +2,8 @@
 @using Sitecore.Mvc.Presentation
 @using Sitecore.Demo.Project.MVC.Web.Models
 @model  AboutViewModel
-@if (Model != null && Model.Item != null)
+<div id="contentIndex"></div>
+@if (Model != null && Model.InnerItem != null)
 {
     <!-- About Start -->
     <div class="about wow fadeInUp" data-wow-delay="0.1s">
@@ -10,20 +11,20 @@
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6">
                     <div class="about-img">
-                        @Html.Sitecore().Field("Image",Model.Item)
+                        @Html.Sitecore().Field("Image",Model.InnerItem)
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-6">
                     <div class="section-header text-left">
-                        <p>@Html.Sitecore().Field("Title",Model.Item)</p>
-                        <h2>@Html.Sitecore().Field("Sub_Title",Model.Item)</h2>
+                        <p>@Html.Sitecore().Field("Title", Model.InnerItem)</p>
+                        <h2>@Html.Sitecore().Field("Sub_Title", Model.InnerItem)</h2>
                     </div>
                     <div class="about-text">
-                        @Html.Sitecore().Field("Description", Model.Item)
+                        @Html.Sitecore().Field("{6179A942-742C-4462-BCA0-5EFE7FFECC03}", Model.InnerItem)
                         @Html.Sitecore().Field("Call_To_Action", new {@class= "btn" })
                         @*Learn More
                         @Html.Sitecore().EndField()
-                        <a class="btn" href="/about-us">@Html.Sitecore().Field("Call_To_Action",Model.Item)</a>*@
+                        <a class="btn" href="/about-us">@Html.Sitecore().Field("Call_To_Action",Model.InnerItem)</a>*@
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 ﻿using Sitecore.Demo.Project.MVC.Web.Models;
+using Sitecore.Diagnostics;
 using Sitecore.Mvc.Presentation;
 using System;
 using System.Collections.Generic;
@@ -10,15 +11,18 @@ namespace Sitecore.Demo.Project.MVC.Web.Controllers
 {
     public class AboutController : Controller
     {
+        public AboutController()
+        {
+            
+        }
         // GET: About
         public ActionResult Index()
         {
-            var datasourceItem = RenderingContext.Current?.Rendering.Item;
             var model = new AboutViewModel()
             {
-                Item = RenderingContext.Current?.Rendering.Item,
+                InnerItem = RenderingContext.Current?.Rendering.Item,
             };
-            return View();
+            return View(model);
         }
     }
 }

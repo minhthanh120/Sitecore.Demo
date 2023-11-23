@@ -207,11 +207,11 @@
     <None Include="Properties\PublishProfiles\SC910 Deploy.pubxml" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\BasicLayout.cshtml" />
     <Content Include="Views\PageHeader\PageHeader.cshtml" />
     <None Include="Properties\PublishProfiles\SitecoreDemo.pubxml" />
     <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Carousel\Index.cshtml" />
     <None Include="Web.config" />
     <Content Include="wwwroots\lib\flaticon\font\Flaticon.eot" />
     <Content Include="wwwroots\lib\flaticon\font\Flaticon.ttf" />
@@ -235,10 +235,12 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\CarouselController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AboutViewModel.cs" />
+    <Compile Include="Models\CarouselModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

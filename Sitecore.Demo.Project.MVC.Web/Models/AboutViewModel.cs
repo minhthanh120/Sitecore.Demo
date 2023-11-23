@@ -8,6 +8,6 @@ namespace Sitecore.Demo.Project.MVC.Web.Models
 {
     public class AboutViewModel
     {
-        public Item Item { get; set; }
+        public Item InnerItem { get; set; }
     }
 }
