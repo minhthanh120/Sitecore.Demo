@@ -212,6 +212,9 @@
     <None Include="Properties\PublishProfiles\SitecoreDemo.pubxml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Carousel\Index.cshtml" />
+    <Content Include="Views\Hotel\Index.cshtml" />
+    <Content Include="Views\Carousel\Detail.cshtml" />
+    <Content Include="Views\Hotel\Detail.cshtml" />
     <None Include="Web.config" />
     <Content Include="wwwroots\lib\flaticon\font\Flaticon.eot" />
     <Content Include="wwwroots\lib\flaticon\font\Flaticon.ttf" />
@@ -236,11 +239,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\CarouselController.cs" />
+    <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AboutViewModel.cs" />
     <Compile Include="Models\CarouselModel.cs" />
+    <Compile Include="Models\HotelModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

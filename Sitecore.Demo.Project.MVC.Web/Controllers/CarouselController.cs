@@ -1,6 +1,7 @@
 ﻿using Sitecore.Data.Fields;
 using Sitecore.Demo.Project.MVC.Web.Models;
 using Sitecore.Mvc.Presentation;
+using Sitecore.Web.UI.WebControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,35 +17,50 @@ namespace Sitecore.Demo.Project.MVC.Web.Controllers
         {
             var model = new CarouselModel();
             List<Slide> slides = new List<Slide>();
+
             var dataSource = RenderingContext.Current?.Rendering.Item;
             MultilistField slidesField = dataSource.Fields["Slides"];
-            if(slides?.Count > 0 )
+
+            //Rendering Parameters
+            var slideCountParam = RenderingContext.Current?.Rendering.Parameters["SlideCount"];
+            int.TryParse(slideCountParam, out int result);
+            int slideCount = result == 0 ? 20 : result;
+
+            if (slidesField?.Count > 0)
             {
                 var slideItems = slidesField.GetItems();
-                foreach( var slideItem in slideItems )
+
+                foreach (var slideItem in slideItems.Take(slideCount))
                 {
+                    //Title
                     var titleField = slideItem.Fields["Title"];
                     var title = titleField?.Value;
-                    var subTitle = new MvcHtmlString(Sitecore.Web.UI.WebControls.FieldRenderer.Render
-                        (RenderingContext.Current?.Rendering.Item, "Sub_Title"));
-                    
-                    var image = new MvcHtmlString(Sitecore.Web.UI.WebControls.FieldRenderer.Render
-                        (RenderingContext.Current?.Rendering.Item, "Image"));
 
-                    var callToAction = new MvcHtmlString(Sitecore.Web.UI.WebControls.FieldRenderer.Render
-                        (RenderingContext.Current?.Rendering.Item, "Call_To_Action", "class=btn animated fadeInUp"));
+                    //Sub Title
+                    var subTitle = new MvcHtmlString(FieldRenderer.Render
+                        (slideItem, "Sub_Title"));
+
+                    //Image
+                    var image = new MvcHtmlString(FieldRenderer.Render
+                        (slideItem, "Image"));
+
+                    //Call to action
+                    var callToAction = new MvcHtmlString(FieldRenderer.Render
+                        (slideItem, "Call_To_Action"
+                        , "class=btn animated fadeInUp"));
+
                     slides.Add(new Slide
                     {
                         Title = title,
                         SubTitle = subTitle,
                         Image = image,
-                        CallToAction = callToAction,
+                        CallToAction = callToAction
                     });
                 }
                 model.Slides = slides;
             }
             return View(model);
-
         }
+
     }
 }

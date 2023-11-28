@@ -1,14 +1,14 @@
 ﻿﻿@using Sitecore.Mvc
 @using Sitecore.Mvc.Presentation
 @using Sitecore.Demo.Project.MVC.Web.Models
-@model CarouselModel
-
-<!-- Carousel Start -->
-@if (Model != null && Model.Slides != null && Model.Slides.Count > 0)
+@model Hotel
+<!-- Detail Start -->
+@if (Model != null)
 {
-    <div id="carousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            @for (int i = 0; i < Model.Slides.Count; i++)
+    <!-- Carousel Start -->
+    <div id="carousel" class="w-75 h-75 carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators" style="margin-top: 10%;">
+            @for (int i = 0; i < Model.Images.Count; i++)
             {
                 if (i == 0)
                 {
@@ -20,28 +20,21 @@
                 }
             }
         </ol>
-        <div class="carousel-inner">
+        <div class="carousel-inner img-fluid">
             @{
                 int count = 0;
             }
-            @foreach (var slide in Model.Slides)
+            @foreach (var slide in Model.Images)
             {
                 var activeClass = count == 0 ? "active" : string.Empty;
                 <div class="carousel-item @activeClass">
-                    @slide.Image
-                    <div class="carousel-caption">
-                        <p class="animated fadeInRight">
-                            @slide.Title
-                        </p>
-                        <h1 class="animated fadeInLeft">
-                            @slide.SubTitle
-                        </h1>
-                        @slide.CallToAction
-                    </div>
+                        @slide.Name
                 </div>
                 count++;
             }
+
         </div>
+
         <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -51,5 +44,25 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+    <!-- Carousel End -->
+    <div class="team">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>Our Partner</p>
+                <h2>@Model.Title</h2>
+                <div class="text-center">
+                    <div class="w-50 mx-auto">
+                        <h4 class="text-left position-absolute">@Model.Price$</h4>
+                        <h4 class="text-right">@Model.Score/5</h4>
+                        <h4 class="text-center position-absolute">@Model.Phone</h4>
+                    </div>
+                </div>
+            </div>
+            <h4 class="text-center">@Model.Address</h4>
+            <h4 class="text-center">@Model.CallToAction</h4>
+
+
+        </div>
+    </div>
 }
-<!-- Carousel End -->
+<!-- Detail End -->

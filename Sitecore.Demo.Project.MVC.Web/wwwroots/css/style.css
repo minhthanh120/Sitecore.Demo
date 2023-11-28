@@ -70,8 +70,9 @@ a:focus {
 .btn {
     transition: .3s;
 }
-
-
+.img-fluid {
+    max-width: 1000px;
+}
 /**********************************/
 /********** Top Bar CSS ***********/
 /**********************************/
@@ -260,7 +261,6 @@ a:focus {
     position: relative;
     width: 100%;
     height: calc(100vh - 170px);
-    min-height: 400px;
     margin: 0 auto;
     text-align: center;
     overflow: hidden;
@@ -286,7 +286,6 @@ a:focus {
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, .3);
     z-index: 1;
 }
 
