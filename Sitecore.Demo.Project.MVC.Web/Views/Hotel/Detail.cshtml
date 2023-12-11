@@ -52,14 +52,14 @@
                 <h2>@Model.Title</h2>
                 <div class="text-center">
                     <div class="w-50 mx-auto">
-                        <h4 class="text-left position-absolute">@Model.Price$</h4>
-                        <h4 class="text-right">@Model.Score/5</h4>
-                        <h4 class="text-center position-absolute">@Model.Phone</h4>
+                        <h4 class="text-left position-absolute">Price: @Model.Price$</h4>
+                        <h4 class="text-right">Rating: @Model.Score/5</h4>
+                        <h4 class="text-center position-absolute">Phone: @Model.Phone</h4>
                     </div>
                 </div>
             </div>
-            <h4 class="text-center">@Model.Address</h4>
-            <h4 class="text-center">@Model.CallToAction</h4>
+            <h4 class="text-center">Adress: @Model.Address</h4>
+            <h4 class="text-center">Website <a href="@Model.CallToAction">@Model.CallToAction</a></h4>
 
 
         </div>
