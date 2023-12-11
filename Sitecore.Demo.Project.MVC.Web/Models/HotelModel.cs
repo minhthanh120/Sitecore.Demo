@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sitecore.Data.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,7 @@ namespace Sitecore.Demo.Project.MVC.Web.Models
         public string Id { get; set; }
         public MvcHtmlString Price { get; set; }
         public List<Image> Images { get; set; }
+        public Item Avatar { get; set; }
     }
     public class Image
     {

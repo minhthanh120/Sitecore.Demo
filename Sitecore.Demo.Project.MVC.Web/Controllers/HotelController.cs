@@ -1,7 +1,10 @@
 ﻿using Sitecore.Data.Fields;
+using Sitecore.Data.Items;
 using Sitecore.Demo.Project.MVC.Web.Models;
 using Sitecore.Diagnostics;
+using Sitecore.Mvc.Extensions;
 using Sitecore.Mvc.Presentation;
+using Sitecore.Resources.Media;
 using Sitecore.Web.UI.WebControls;
 using System;
 using System.Collections.Generic;
@@ -21,7 +24,7 @@ namespace Sitecore.Demo.Project.MVC.Web.Controllers
             List<Hotel> hotels = new List<Hotel>();
 
             var dataSource = RenderingContext.Current?.Rendering.Item;
-            MultilistField slidesField = dataSource.Fields["Slides"];
+            MultilistField slidesField = dataSource.Fields["List Hotels"];
 
             //Rendering Parameters
             var slideCountParam = RenderingContext.Current?.Rendering.Parameters["SlideCount"];
@@ -41,7 +44,6 @@ namespace Sitecore.Demo.Project.MVC.Web.Controllers
                     //Sub Title
                     var subTitle = new MvcHtmlString(FieldRenderer.Render
                         (slideItem, "Address"));
-
                     //Image
                     var image = new MvcHtmlString(FieldRenderer.Render
                         (slideItem, "Image"));
@@ -52,17 +54,19 @@ namespace Sitecore.Demo.Project.MVC.Web.Controllers
                     var score = slideItem.Fields["Score"]?.Value;
                     var id = slideItem.Fields["Id"]?.Value;
                     MultilistField images = slideItem.Fields["Images"];
-                    Data.Items.Item[] items = images.GetItems();
+                    Item[] items = images.GetItems();
+
                     hotels.Add(new Hotel
                     {
                         Title = title,
                         Address = subTitle,
-                        Image = (items!=null && items.Length > 0)? new MvcHtmlString(FieldRenderer.Render(items.LastOrDefault(), "Image")) :image,
+                        Image = (items!=null && items.Length > 0)? new MvcHtmlString(string.Format("<img src=\"{0}\" ></>", MediaManager.GetMediaUrl(new MediaItem(items[0])))) :image,
                         CallToAction = callToAction,
                         Score = score,
                         Price = price,
-                        Id = id
+                        Id = id,
                     });
+                    Log.Info("model.Image: " + hotels.Last().Image, this);
                 }
                 model.Hotels = hotels;
             }
@@ -94,7 +98,7 @@ namespace Sitecore.Demo.Project.MVC.Web.Controllers
             var score = hotel.Fields["Score"]?.Value;
             var id = hotel.Fields["Id"]?.Value;
             MultilistField images = hotel.Fields["Images"];
-            Data.Items.Item[] items = images.GetItems();
+            Item[] items = images.GetItems();
             var hotelImages = new List<Image>();
             if(items!=null && items.Length>0)
             {
