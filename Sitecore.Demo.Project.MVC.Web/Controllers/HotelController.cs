@@ -60,19 +60,18 @@ namespace Sitecore.Demo.Project.MVC.Web.Controllers
                     {
                         Title = title,
                         Address = subTitle,
-                        Image = (items!=null && items.Length > 0)? new MvcHtmlString(string.Format("<img src=\"{0}\" ></>", MediaManager.GetMediaUrl(new MediaItem(items[0])))) :image,
+                        Image = (items != null && items.Length > 0) ? new MvcHtmlString(string.Format("<img src=\"{0}\" ></>", MediaManager.GetMediaUrl(new MediaItem(items[0])))) : image,
                         CallToAction = callToAction,
                         Score = score,
                         Price = price,
                         Id = id,
                     });
-                    Log.Info("model.Image: " + hotels.Last().Image, this);
                 }
                 model.Hotels = hotels;
             }
             return View(model);
         }
-        public ActionResult Detail(string itemId= "")
+        public ActionResult Detail(string itemId = "")
         {
             if (string.IsNullOrEmpty(itemId))
             {
@@ -99,17 +98,16 @@ namespace Sitecore.Demo.Project.MVC.Web.Controllers
             var id = hotel.Fields["Id"]?.Value;
             MultilistField images = hotel.Fields["Images"];
             Item[] items = images.GetItems();
-            var hotelImages = new List<Image>();
-            if(items!=null && items.Length>0)
+            var hotelImages = new List<MvcHtmlString>();
+            if (items != null && items.Length > 0)
             {
-                foreach( var item in items)
+                foreach (var item in items)
                 {
-                    hotelImages.Add(new Image()
-                    {
-                        Name = new MvcHtmlString(FieldRenderer.Render(item, "Image", "class= img-fluid"))
-                    });
+                    hotelImages.Add(
+                        new MvcHtmlString(string.Format("<img \"class= img-fluid\" src=\"{0}\" ></>", MediaManager.GetMediaUrl(new MediaItem(item))))
+                        );
                 }
-            }    
+            }
             var model = new Hotel()
             {
                 Title = title,
@@ -121,7 +119,7 @@ namespace Sitecore.Demo.Project.MVC.Web.Controllers
                 Images = hotelImages,
                 Id = id
             };
-
+            ViewBag.Title = model.Title;
             return View(model);
         }
 

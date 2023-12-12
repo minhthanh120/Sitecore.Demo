@@ -28,7 +28,7 @@
             {
                 var activeClass = count == 0 ? "active" : string.Empty;
                 <div class="carousel-item @activeClass">
-                        @slide.Name
+                        @slide
                 </div>
                 count++;
             }
@@ -52,9 +52,9 @@
                 <h2>@Model.Title</h2>
                 <div class="text-center">
                     <div class="w-50 mx-auto">
-                        <h4 class="text-left position-absolute">@Model.Price$</h4>
-                        <h4 class="text-right">@Model.Score/5</h4>
-                        <h4 class="text-center position-absolute">@Model.Phone</h4>
+                        <h4 class="text-left position-absolute">Price: @Model.Price$</h4>
+                        <h4 class="text-right">Rating: @Model.Score/5</h4>
+                        <h4 class="text-center position-absolute">Phone: @Model.Phone</h4>
                     </div>
                 </div>
             </div>

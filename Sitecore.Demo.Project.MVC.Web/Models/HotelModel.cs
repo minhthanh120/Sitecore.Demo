@@ -22,7 +22,7 @@ namespace Sitecore.Demo.Project.MVC.Web.Models
         public string Phone { get; set; }
         public string Id { get; set; }
         public MvcHtmlString Price { get; set; }
-        public List<Image> Images { get; set; }
+        public List<MvcHtmlString> Images { get; set; }
         public Item Avatar { get; set; }
     }
     public class Image
